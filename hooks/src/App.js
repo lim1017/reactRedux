@@ -1,24 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import QuestionsContainer from "./components/QuestionsContainer"
+
+
+const items = [
+  { 
+    title: "What is React?",
+    content: "React is a JS library"
+  },
+  { 
+    title: "What is Angular?",
+    content: "Angular is a JS library"
+  },
+  { 
+    title: "What is Vue?",
+    content: "Vue is a JS library"
+  },
+  { 
+    title: "Which one is the best one??",
+    content: "React is a JS library"
+  },
+]
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <div>hooks</div>
+
+     <QuestionsContainer items={items} />
     </div>
   );
 }
