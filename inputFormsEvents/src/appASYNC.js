@@ -6,7 +6,7 @@ import './App.css'
 class App extends React.Component {
   state = { searchText: "", searchResults: [] };
 
-onFormSubmit = async (e, value) => {
+ async onFormSubmit = (e, value) => {
     e.preventDefault();
     //using async await
 
