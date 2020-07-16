@@ -9,7 +9,7 @@ class SearchBar extends React.Component {
 
   render(){
     return (
-      <div className="ui segment">
+      <div className="ui segment" style={{display:"flex", justifyContent:'center', marginBottom:"2em"}}>
         <form className="ui form "
         onSubmit={(e)=>this.props.onFormSubmit(e, this.state.searchText)}
         >
