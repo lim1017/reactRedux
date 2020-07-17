@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import QuestionsContainer from "./components/QuestionsContainer"
+import SearchContainer from "./components/SearchContainer"
 
 
 const items = [
@@ -28,6 +29,7 @@ function App() {
      <div>hooks</div>
 
      <QuestionsContainer items={items} />
+     <SearchContainer />
     </div>
   );
 }
