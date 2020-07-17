@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from "react";
 import './App.css';
 import QuestionsContainer from "./components/QuestionsContainer"
 import SearchContainer from "./components/SearchContainer"
+import DropDownContainer from "./components/DropDownContainer"
+
 
 
 const items = [
@@ -23,13 +25,33 @@ const items = [
   },
 ]
 
+const options = [
+  {
+    label: "Color Red",
+    value: 'red',
+  },
+  {
+    label: "Color Green",
+    value: 'green',
+  },
+  {
+    label: "Color Blue",
+    value: 'blue',
+  },
+]
+
 function App() {
+
+  const [color, setColor] = useState(options[0]);
+
+
   return (
     <div className="App">
      <div>hooks</div>
 
      <QuestionsContainer items={items} />
      <SearchContainer />
+     <DropDownContainer options={options} color={color} setColor={setColor} />
     </div>
   );
 }
