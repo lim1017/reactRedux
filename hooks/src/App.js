@@ -4,6 +4,7 @@ import QuestionsContainer from "./components/QuestionsContainer";
 import SearchContainer from "./components/SearchContainer";
 import DropDownContainer from "./components/DropDownContainer";
 import Tranlate from "./components/Translate";
+import Route from "./components/Route";
 
 const items = [
   {
@@ -39,42 +40,29 @@ const options = [
   },
 ];
 
-
-
 function App() {
   const [color, setColor] = useState(options[0]);
 
-
-  const showWidgets = () => {
-    if (window.location.pathname === "/") {
-      return <QuestionsContainer items={items} />;
-    }
-  
-    if (window.location.pathname === "/search") {
-      return <SearchContainer />;
-    }
-  
-    if (window.location.pathname === "/dropdown") {
-      return (
+  return (
+    <div className="App">
+      <div>hooks</div>
+      <Route path="/">
+        <QuestionsContainer items={items} />;
+      </Route>
+      <Route path="/search">
+        <SearchContainer />
+      </Route>
+      <Route path="/dropdown">
         <DropDownContainer
           type="Color"
           options={options}
           selected={color}
           setSelected={setColor}
         />
-      );
-    }
-  
-    if (window.location.pathname === "/translate") {
-      return <Tranlate />;
-    }
-  };
-
-
-  return (
-    <div className="App">
-      <div>hooks</div>
-      {showWidgets()}
+      </Route>
+      <Route path="/translate">
+        <Tranlate />
+      </Route>
     </div>
   );
 }
