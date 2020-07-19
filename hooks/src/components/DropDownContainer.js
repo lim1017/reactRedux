@@ -5,12 +5,22 @@ const DropDownContainer = ({ options, color, setColor }) => {
 
   //use effect to check for reference to see if the click is on the drop down.  if it isnt close it.
   useEffect(() => {
-    document.body.addEventListener('click', (event)=>{
+
+    const onBodyClick = (event)=>{
       
       if(reference.current.contains(event.target)){
         return
       } else setOpen(false)
-    })
+    }
+
+    document.body.addEventListener('click', onBodyClick)
+
+
+    //clean up function, removes the event listener.  This is necessary for if the element is removed, if not here it will throw an error becaues referene will == null
+    return  ()=>{
+      document.body.removeEventListener('click', onBodyClick)
+    }
+
   }, [])
 
   const renderedOptions = options.map((option) => {
