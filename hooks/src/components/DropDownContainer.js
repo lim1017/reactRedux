@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
-const DropDownContainer = ({ options, color, setColor }) => {
+const DropDownContainer = ({ options, selected, setSelected, type }) => {
   const [open, setOpen] = useState(false);
 
   //use effect to check for reference to see if the click is on the drop down.  if it isnt close it.
@@ -24,12 +24,12 @@ const DropDownContainer = ({ options, color, setColor }) => {
   }, [])
 
   const renderedOptions = options.map((option) => {
-    if (option.value === color) {
+    if (option.value === selected) {
       return null;
     }
 
     return (
-      <div key={option.value} className="item" onClick={() => setColor(option)}>
+      <div key={option.value} className="item" onClick={() => setSelected(option)}>
         {option.label}
       </div>
     );
@@ -40,13 +40,13 @@ const DropDownContainer = ({ options, color, setColor }) => {
   return (
     <div ref={reference} className="ui form">
       <div className="field">
-        <label className="label">Select a color</label>
+        <label className="label">{`Select a ${type}`} </label>
         <div
           className={`ui selection dropdown ${open ? "visible active" : ""}`}
           onClick={() => setOpen(!open)}
         >
           <i className="dropdown icon"></i>
-          <div className="text">{color.label}</div>
+          <div className="text">{selected.label}</div>
           <div className={`menu ${open ? "visible transition" : ""}`}>
             {renderedOptions}
           </div>

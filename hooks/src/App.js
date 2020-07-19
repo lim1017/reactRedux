@@ -3,6 +3,7 @@ import './App.css';
 import QuestionsContainer from "./components/QuestionsContainer"
 import SearchContainer from "./components/SearchContainer"
 import DropDownContainer from "./components/DropDownContainer"
+import Tranlate from "./components/Translate"
 
 
 
@@ -51,9 +52,10 @@ function App() {
 
      <QuestionsContainer items={items} />
      <SearchContainer />
-     <DropDownContainer options={options} color={color} setColor={setColor} />
+     <DropDownContainer type='Color' options={options} selected={color} setSelected={setColor} />
+     <Tranlate />
     </div>
-  );
+  );  
 }
 
 export default App;
