@@ -1,11 +1,23 @@
 import React from 'react';
 import './App.css';
-import { selectSong } from "./actions"
+import SongList from "./components/SongList"
+import SongDetail from "./components/SongDetails"
+
 
 function App() {
   return (
-    <div className="App">
-     hello
+    <div className="ui container grid">
+
+      <div className='ui row'>
+        <div className='column eight wide'>
+          <SongList />
+        </div>
+
+        <div className='column eight wide'>
+          <SongDetail />
+        </div>
+      </div>
+      
     </div>
   );
 }
