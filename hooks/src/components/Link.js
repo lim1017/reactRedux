@@ -5,7 +5,7 @@ const Link = ({className, href, children}) =>{
   const handleClick = (e) => {
 
     //allows ctrl+click or cmd on mac to open new tab.
-    if(e.metaKey || event.ctrlKey){
+    if(e.metaKey || e.ctrlKey){
       return;
     }
 
