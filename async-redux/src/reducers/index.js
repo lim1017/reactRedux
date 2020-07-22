@@ -1,6 +1,6 @@
-import { combindReducers } from 'redux'
+import { combineReducers } from 'redux'
+import postReducer from './postReducer'
 
-
-export default combindReducers({
-  dummy: () => 10
-};)
+export default combineReducers({
+  posts: postReducer
+});
