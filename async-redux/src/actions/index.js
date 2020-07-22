@@ -1,4 +1,13 @@
 import baseURL from "../apis/jsonPlaceHolder"
+import _ from "lodash"
+
+
+export const fetchPostAndUsers = () => async (dispatch, getState) =>{
+  await dispatch(fetchPosts())
+  const uniqueUserIds= _.uniq(_.map(getState().posts, 'userId'))
+
+  uniqueUserIds.forEach(id => dispatch(fetchUser(id)))
+}
 
 export const fetchPosts = ()=>{
   
@@ -9,3 +18,27 @@ export const fetchPosts = ()=>{
   }
 
 }
+
+export const fetchUser = (userId)=>{
+  
+  return async (dispatch, getState) => {
+    const response = await baseURL.get(`/users/${userId}`);
+
+    dispatch({ type: "FETCH_USER", payload: response.data }) 
+  }
+
+}
+
+
+//momized solution to overfetching, mayne not the best cause if the user data changes it wont refetch
+// export const fetchUser = (userId)=> dispatch=>{
+//   _fetchUser(userId, dispatch)
+// }
+  
+
+// const _fetchUser = _.memoize( async (userId, dispatch)=>{
+//   const response = await baseURL.get(`/users/${userId}`);
+
+//   dispatch({ type: "FETCH_USER", payload: response.data }) 
+
+// })
