@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchStreams } from "../../actions";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const StreamList = (props) => {
   const renderAdminButtons = (stream) => {
@@ -26,7 +26,7 @@ const StreamList = (props) => {
           \{renderAdminButtons(stream)}
           <i className="large middle aligned icon camera" />
           <div className="content">
-            {stream.title}
+            <Link className="header" to={`/streams/show/${stream.id}`}>{stream.title}</Link>
             <div className="description">{stream.description}</div>
           </div>
         </div>
