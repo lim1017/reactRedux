@@ -1,4 +1,5 @@
 import streamsURL from "../apis/steams";
+import history from "../history"
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -22,17 +23,18 @@ export const signOut = () => {
   };
 };
 
-export const createStream = (formValues) => {
-  return async (dispatch) => {
-    const response = streamsURL.post("/streams", formValues);
+export const createStream = formValues => async (dispatch, getState) => {
+  const { userId } = getState().auth
+    const response = await streamsURL.post("/streams", {...formValues, userId});
 
     dispatch({ type: CREATE_STREAM, payload: response.data });
-  };
+    history.push('/')
 };
+
 
 export const fetchStreams = () => {
   return async (dispatch) => {
-    const response = streamsURL.get("/streams");
+    const response = await streamsURL.get("/streams");
 
     dispatch({ type: FETCH_STREAMS, payload: response.data });
   };
@@ -40,24 +42,31 @@ export const fetchStreams = () => {
 
 export const fetchStream = (streamId) => {
   return async (dispatch) => {
-    const response = streamsURL.get(`/streams/${streamId}`);
+    const response = await streamsURL.get(`/streams/${streamId}`);
 
     dispatch({ type: FETCH_STREAM, payload: response.data });
   };
 };
 
 export const editStream = (streamId, formUpdate) => {
-  return async (dispatch) => {
-    const response = streamsURL.put(`/streams/${streamId}`, formUpdate);
+
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth
+
+    const response = await streamsURL.patch(`/streams/${streamId}`, formUpdate);
 
     dispatch({ type: EDIT_STREAM, payload: response.data });
+    history.push('/')
+
   };
 };
 
 export const deleteStream = (streamId) => {
   return async (dispatch) => {
-    const response = streamsURL.delete(`/streams/${streamId}`);
+    const response = await streamsURL.delete(`/streams/${streamId}`);
 
     dispatch({ type: DELETE_STREAM, payload: streamId });
+    history.push('/')
+
   };
 };
